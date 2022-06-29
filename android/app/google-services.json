@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "735231521343",
+    "project_id": "auth-nic",
+    "storage_bucket": "auth-nic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735231521343:android:a51fb1f7f84678a5533e8a",
+        "android_client_info": {
+          "package_name": "com.example.mgmt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735231521343-sgg11jlumgstp3sa1usar1gdl69meicr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mgmt",
+            "certificate_hash": "862c3c39ecf4a88eacd73c996324b457c2706b82"
+          }
+        },
+        {
+          "client_id": "735231521343-parm16i40n1gp5r5q39tjvpf876ccppl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkV9fmg830wbimrB7XVdo4ewZxr10Elbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735231521343-parm16i40n1gp5r5q39tjvpf876ccppl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
