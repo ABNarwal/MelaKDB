@@ -19,12 +19,17 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   File? image;
+  var imagebytes;
+  String img = '';
+  String pdfFile = '';
   Future pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
 
       final imagePath = File(image.path);
+      imagebytes = await imagePath.readAsBytes(); //convert to bytes
+      img = convert.base64.encode(imagebytes);
       setState(() => this.image = imagePath);
     } on PlatformException catch (e) {
       print('failed to pick image: $e');
@@ -197,7 +202,7 @@ class _DetailsPageState extends State<DetailsPage> {
         'cosmetics',
         'jewellery',
         'handicrafts',
-        'handiloom'
+        'handloom'
       ]
           .map((label) => DropdownMenuItem(
                 child: Text(label.toString()),
@@ -290,19 +295,33 @@ class _DetailsPageState extends State<DetailsPage> {
         );
       },
     );
+    UploadFile() {}
     final gstCertificate = Material(
         color: Color.fromARGB(255, 151, 156, 160),
         borderRadius: BorderRadius.circular(10),
         child: ElevatedButton(
-          child: Text("Upload gstCertificate"),
-          onPressed: () async {
-            final result = await FilePicker.platform.pickFiles();
-            if (result == null) return;
-            if (result != null) {
-              var pdfPath = File(result.toString());
-            }
-          },
-        ));
+            child: Text("Upload gstCertificate"),
+            onPressed: () async {
+              // final result = await FilePicker.platform.pickFiles();
+              // FilePickerResult? result = await FilePicker.platform.pickFiles(
+              //   type: FileType.custom,
+              //   allowedExtensions: ['jpg', 'pdf', 'doc'],
+              // );
+              FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+              if (result != null) {
+                PlatformFile file = result.files.first;
+                pdfFile = file.path.toString();
+                print(pdfFile);
+                // if (result != null) {
+                //   File file = File(result.files.single.path);
+                //   pdfFile = convert.base64.encode(utf8.encode(file.path));
+                // }
+                // if (result != null) {
+                //   var pdfPath = File(result.toString());
+                // }
+              }
+            }));
 
     final imageUpload = Stack(
       children: [
@@ -410,22 +429,22 @@ class _DetailsPageState extends State<DetailsPage> {
                       ElevatedButton(
                         child: const Text('Send'),
                         onPressed: () async {
-                          UserRegistration users = UserRegistration(
-                              name: nameEC.text.toString(),
+                          UserRegistration users = new UserRegistration(
+                              name: nameEC.text,
                               fName: FnameEC.text,
                               mobile: mobileEC.text,
                               email: emailEC.text,
-                              state: stateField.toString(),
-                              district: districtField.toString(),
+                              state: _stateController,
+                              district: districtEC.text,
                               //address: FnameField.text,
                               gender: _genderController,
                               team: int.parse('0'),
-                              category: catField.toString(),
-                              gsTNo: GSTField.toString(),
-                              gsTCertificate: gstCertificate,
-                              address: '',
-                              photo: convert.base64UrlEncode(image.path),
-                              srno: 2);
+                              category: _catController,
+                              gsTNo: GSTEC.text,
+                              gsTCertificate: 'dsdffsdfdsfsdfsda',
+                              address: 'ddd',
+                              photo: img,
+                              srno: 0);
 
                           var res =
                               await kdbmela(users).whenComplete(() => null);
