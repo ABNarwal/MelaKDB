@@ -38,7 +38,7 @@ class UserRegistration {
   String district;
   String address;
   String gender;
-  int team;
+  String team;
   String category;
   String gsTNo;
   dynamic gsTCertificate;

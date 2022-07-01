@@ -46,6 +46,7 @@ class _DetailsPageState extends State<DetailsPage> {
   final mobileEC = new TextEditingController();
   final noOfPeopleEC = new TextEditingController();
   final GSTEC = new TextEditingController();
+  final addressEC = new TextEditingController();
 
   String _stateController = 'Haryana';
   String _catController = 'Categories';
@@ -128,6 +129,25 @@ class _DetailsPageState extends State<DetailsPage> {
       decoration: const InputDecoration(
         hintText: "enter GST no.",
         labelText: "GST no.",
+      ),
+    );
+
+    final addressField = TextFormField(
+      autofocus: false,
+      controller: addressEC,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Address can't be empty";
+        }
+      },
+      onSaved: (value) {
+        addressEC.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: const InputDecoration(
+        hintText: "enter Address.",
+        labelText: "Address",
       ),
     );
 
@@ -403,6 +423,10 @@ class _DetailsPageState extends State<DetailsPage> {
                       const SizedBox(
                         height: 20,
                       ),
+                      addressField,
+                      const SizedBox(
+                        height: 20,
+                      ),
                       MobileField,
                       const SizedBox(
                         height: 20,
@@ -430,21 +454,22 @@ class _DetailsPageState extends State<DetailsPage> {
                         child: const Text('Send'),
                         onPressed: () async {
                           UserRegistration users = new UserRegistration(
-                              name: nameEC.text,
-                              fName: FnameEC.text,
-                              mobile: mobileEC.text,
-                              email: emailEC.text,
-                              state: _stateController,
-                              district: districtEC.text,
-                              //address: FnameField.text,
-                              gender: _genderController,
-                              team: int.parse('0'),
-                              category: _catController,
-                              gsTNo: GSTEC.text,
-                              gsTCertificate: 'dsdffsdfdsfsdfsda',
-                              address: 'ddd',
-                              photo: img,
-                              srno: 0);
+                            name: nameEC.text,
+                            fName: FnameEC.text,
+                            mobile: mobileEC.text,
+                            email: emailEC.text,
+                            state: _stateController,
+                            district: districtEC.text,
+                            //address: FnameField.text,
+                            gender: _genderController,
+                            team: noOfPeopleEC.text,
+                            category: _catController,
+                            gsTNo: GSTEC.text,
+                            gsTCertificate: 'dsdffsdfdsfsdfsda',
+                            address: addressEC.text,
+                            photo: img,
+                            srno: 0,
+                          );
 
                           var res =
                               await kdbmela(users).whenComplete(() => null);
