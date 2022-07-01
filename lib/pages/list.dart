@@ -137,20 +137,20 @@ class _HomePagenewState extends State<HomePagenew> {
               ),
               value: partvalue,
               // ignore: prefer_null_aware_operators
-              items: sectionResponse != null
-                  ? sectionResponse?.map(
+              items: partResponse != null
+                  ? partResponse?.map(
                       (item) {
                         return DropdownMenuItem(
-                          value: item.sectionCode.toString(),
-                          child: Text(item.sectionName),
+                          value: item.partCode.toString(),
+                          child: Text(item.partName),
                         );
                       },
                     ).toList()
                   : null,
               onChanged: (item) {
-                sectionvalue = item.toString();
-                setchapter(
-                  sectionvalue.toString(),
+                partvalue = item.toString();
+                setSection(
+                  partvalue.toString(),
                 );
               },
             ),

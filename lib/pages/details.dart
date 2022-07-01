@@ -19,6 +19,7 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   File? image;
+  File? pdfres;
   var imagebytes;
   String img = '';
   String pdfFile = '';
@@ -315,7 +316,7 @@ class _DetailsPageState extends State<DetailsPage> {
         );
       },
     );
-    UploadFile() {}
+
     final gstCertificate = Material(
         color: Color.fromARGB(255, 151, 156, 160),
         borderRadius: BorderRadius.circular(10),
@@ -327,12 +328,13 @@ class _DetailsPageState extends State<DetailsPage> {
               //   type: FileType.custom,
               //   allowedExtensions: ['jpg', 'pdf', 'doc'],
               // );
-              FilePickerResult? result = await FilePicker.platform.pickFiles();
+              final res = await FilePicker.platform.pickFiles();
 
-              if (result != null) {
-                PlatformFile file = result.files.first;
-                pdfFile = file.path.toString();
-                print(pdfFile);
+              if (res != null) {
+                final p = File(res.files.first.path!);
+                var b = await p.readAsBytes();
+                pdfFile = convert.base64Encode(b);
+
                 // if (result != null) {
                 //   File file = File(result.files.single.path);
                 //   pdfFile = convert.base64.encode(utf8.encode(file.path));
@@ -453,20 +455,19 @@ class _DetailsPageState extends State<DetailsPage> {
                       ElevatedButton(
                         child: const Text('Send'),
                         onPressed: () async {
-                          UserRegistration users = new UserRegistration(
+                          UserRegistration users = UserRegistration(
                             name: nameEC.text,
                             fName: FnameEC.text,
                             mobile: mobileEC.text,
                             email: emailEC.text,
                             state: _stateController,
                             district: districtEC.text,
-                            //address: FnameField.text,
+                            address: addressEC.text,
                             gender: _genderController,
                             team: noOfPeopleEC.text,
                             category: _catController,
                             gsTNo: GSTEC.text,
-                            gsTCertificate: 'dsdffsdfdsfsdfsda',
-                            address: addressEC.text,
+                            gsTCertificate: pdfFile,
                             photo: img,
                             srno: 0,
                           );
