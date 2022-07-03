@@ -32,6 +32,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         //body: ShopAlloc(),
-        body: DetailsPage(),
+        body: ProfilePage(),
       );
 }

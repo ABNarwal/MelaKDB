@@ -1,7 +1,9 @@
 import 'dart:ui';
+import 'package:mgmt/pages/Gallery.dart';
 import 'package:mgmt/pages/details.dart';
 import 'package:flutter/material.dart';
 import 'package:mgmt/pages/home.dart';
+import 'package:mgmt/pages/raiseIssue.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -31,8 +33,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Stack(
                     fit: StackFit.expand,
                     clipBehavior: Clip.none,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundImage: AssetImage("assets/images/pfp.jpeg"),
                       ),
                     ],
@@ -121,8 +124,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        ListTile(
+                        const ListTile(
                           leading: Icon(
                             Icons.help,
                             color: Colors.white,
@@ -131,6 +135,82 @@ class _ProfilePageState extends State<ProfilePage> {
                             'Help Center',
                             style: TextStyle(color: Colors.white),
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  // height: 80,
+                  child: Card(
+                    semanticContainer: false,
+                    //clipBehavior:
+                    elevation: 10,
+                    //shadowColor: Color(0xff1DB954),
+                    color: Color(0xff4a4e69),
+                    margin: EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          leading: const Icon(
+                            Icons.bug_report,
+                            color: Colors.white,
+                          ),
+                          title: const Text(
+                            'Raise Issue',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RaiseIssue(),
+                              ),
+                            ),
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  // height: 80,
+                  child: Card(
+                    semanticContainer: false,
+                    //clipBehavior:
+                    elevation: 10,
+                    //shadowColor: Color(0xff1DB954),
+                    color: Color(0xff4a4e69),
+                    margin: EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          leading: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.white,
+                          ),
+                          title: const Text(
+                            'Upload Pictures',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Gallery(),
+                              ),
+                            ),
+                          },
                         ),
                       ],
                     ),

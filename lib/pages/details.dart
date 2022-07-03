@@ -485,7 +485,7 @@ class _DetailsPageState extends State<DetailsPage> {
              * send the entered data to the Firebase Cloud Firestore.
              */
                         },
-                      )
+                      ),
                     ],
                   ),
                 )
