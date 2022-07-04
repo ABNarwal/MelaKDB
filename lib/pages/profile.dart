@@ -3,6 +3,7 @@ import 'package:mgmt/pages/Gallery.dart';
 import 'package:mgmt/pages/details.dart';
 import 'package:flutter/material.dart';
 import 'package:mgmt/pages/home.dart';
+import 'package:mgmt/pages/progress.dart';
 import 'package:mgmt/pages/raiseIssue.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -82,36 +83,36 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  // height: 80,
-                  child: Card(
-                    semanticContainer: false,
-                    //clipBehavior:
-                    elevation: 10,
-                    //shadowColor: Color(0xff1DB954),
-                    color: Color(0xff4a4e69),
-                    margin: EdgeInsets.all(5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ListTile(
-                          leading: Icon(
-                            Icons.settings,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            'Settings',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+                // SizedBox(
+                //   // height: 80,
+                //   child: Card(
+                //     semanticContainer: false,
+                //     //clipBehavior:
+                //     elevation: 10,
+                //     //shadowColor: Color(0xff1DB954),
+                //     color: Color(0xff4a4e69),
+                //     margin: EdgeInsets.all(5),
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.center,
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         ListTile(
+                //           leading: Icon(
+                //             Icons.settings,
+                //             color: Colors.white,
+                //           ),
+                //           title: Text(
+                //             'Settings',
+                //             style: TextStyle(color: Colors.white),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
                 SizedBox(
                   // height: 80,
                   child: Card(
@@ -208,6 +209,44 @@ class _ProfilePageState extends State<ProfilePage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => Gallery(),
+                              ),
+                            ),
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  // height: 80,
+                  child: Card(
+                    semanticContainer: false,
+                    //clipBehavior:
+                    elevation: 10,
+                    //shadowColor: Color(0xff1DB954),
+                    color: Color(0xff4a4e69),
+                    margin: EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          leading: const Icon(
+                            Icons.priority_high,
+                            color: Colors.white,
+                          ),
+                          title: const Text(
+                            'Check Progress',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProgressPage(),
                               ),
                             ),
                           },
