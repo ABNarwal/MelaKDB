@@ -6,6 +6,7 @@ import 'package:mgmt/pages/ShowListPage.dart';
 import 'package:mgmt/pages/details.dart';
 import 'package:mgmt/pages/list.dart';
 import 'package:mgmt/pages/login.dart';
+import 'package:mgmt/pages/searchDropdown.dart';
 import 'package:mgmt/pages/shopalloc.dart';
 import 'package:mgmt/pages/home.dart';
 import 'package:mgmt/pages/profile.dart';
@@ -34,6 +35,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         //body: ShopAlloc(),
-        body: DisplayPage(),
+        body: DropDownSearch(),
       );
 }
