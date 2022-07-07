@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'searchCard.dart';
+
+
+class TimelineCard {
+  String title;
+  String description;
+  IconData icon;
+
+  TimelineCard(this.title, this.description, this.icon);
+}
 
 class DisplayPage extends StatefulWidget {
   const DisplayPage({Key? key}) : super(key: key);
