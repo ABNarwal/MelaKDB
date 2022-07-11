@@ -41,7 +41,7 @@ class UserRegistration {
   String team;
   String category;
   String gsTNo;
-  dynamic gsTCertificate;
+  String gsTCertificate;
   String photo;
 
   factory UserRegistration.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mgmt/pages/login.dart';
 import 'package:mgmt/pages/profile.dart';
+import 'package:mgmt/pages/searchDropdown.dart';
 import 'package:mgmt/pages/shopalloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -16,35 +17,44 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text('Home Page'),
-          backgroundColor: Color(0xff4a4e69),
+          backgroundColor: Colors.blue,
         ),
-        body: Center(
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfilePage(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "Go to Profile",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.blueGrey),
-                  ),
+        body: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Go to Profile",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.blue,
+                      decorationStyle: TextDecorationStyle.double,
+                      decoration: TextDecoration.underline),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DropDownSearch()),
+            );
+          }),
+          child: Icon(Icons.search),
         ),
       );
 }
