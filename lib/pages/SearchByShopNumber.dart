@@ -73,27 +73,28 @@ class _SearchByShopNumberState extends State<SearchByShopNumber> {
         child: Column(
           children: [
             Container(
-                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                decoration: BoxDecoration(
-                    border: Border.all(width: 5, color: Colors.greenAccent)),
-                // child: DropdownButton(
-                //     borderRadius: BorderRadius.circular(5),
-                //     alignment: Alignment.topCenter,
-                //     value: dropdownvalue,
-                //     icon: const Icon(Icons.keyboard_arrow_down),
-                //     items: myItems.map((String items) {
-                //       return DropdownMenuItem(
-                //         value: items,
-                //         child: Text(items),
-                //       );
-                //     }).toList(),
-                //     onChanged: (newValue) {
-                //       setState(() {
-                //         dropdownvalue = newValue as String?;
-                //         setFilter(dropdownvalue!);
-                //       });
-                //     }),
-                child: TextBo),
+              margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 5, color: Colors.greenAccent)),
+              // child: DropdownButton(
+              //     borderRadius: BorderRadius.circular(5),
+              //     alignment: Alignment.topCenter,
+              //     value: dropdownvalue,
+              //     icon: const Icon(Icons.keyboard_arrow_down),
+              //     items: myItems.map((String items) {
+              //       return DropdownMenuItem(
+              //         value: items,
+              //         child: Text(items),
+              //       );
+              //     }).toList(),
+              //     onChanged: (newValue) {
+              //       setState(() {
+              //         dropdownvalue = newValue as String?;
+              //         setFilter(dropdownvalue!);
+              //       });
+              //     }),
+              // child: TextBo
+            ),
             Expanded(
               child: ListView.builder(
                   itemCount:

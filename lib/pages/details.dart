@@ -318,32 +318,34 @@ class _DetailsPageState extends State<DetailsPage> {
     );
 
     final gstCertificate = Material(
-        color: Color.fromARGB(255, 151, 156, 160),
-        borderRadius: BorderRadius.circular(10),
-        child: ElevatedButton(
-            child: Text("Upload gstCertificate"),
-            onPressed: () async {
-              // final result = await FilePicker.platform.pickFiles();
-              // FilePickerResult? result = await FilePicker.platform.pickFiles(
-              //   type: FileType.custom,
-              //   allowedExtensions: ['jpg', 'pdf', 'doc'],
-              // );
-              final res = await FilePicker.platform.pickFiles();
+      color: Color.fromARGB(255, 151, 156, 160),
+      borderRadius: BorderRadius.circular(10),
+      child: ElevatedButton(
+        child: Text("Upload gstCertificate"),
+        onPressed: () async {
+          // final result = await FilePicker.platform.pickFiles();
+          // FilePickerResult? result = await FilePicker.platform.pickFiles(
+          //   type: FileType.custom,
+          //   allowedExtensions: ['jpg', 'pdf', 'doc'],
+          // );
+          final res = await FilePicker.platform.pickFiles();
 
-              if (res != null) {
-                final p = File(res.files.first.path!);
-                var b = await p.readAsBytes();
-                pdfFile = convert.base64Encode(b);
+          if (res != null) {
+            final p = File(res.files.first.path!);
+            var b = await p.readAsBytes();
+            pdfFile = convert.base64Encode(b);
 
-                // if (result != null) {
-                //   File file = File(result.files.single.path);
-                //   pdfFile = convert.base64.encode(utf8.encode(file.path));
-                // }
-                // if (result != null) {
-                //   var pdfPath = File(result.toString());
-                // }
-              }
-            }));
+            // if (result != null) {
+            //   File file = File(result.files.single.path);
+            //   pdfFile = convert.base64.encode(utf8.encode(file.path));
+            // }
+            // if (result != null) {
+            //   var pdfPath = File(result.toString());
+            // }
+          }
+        },
+      ),
+    );
 
     final imageUpload = Stack(
       children: [
@@ -520,7 +522,7 @@ Widget buildCircle({
     ClipOval(
       child: Container(
         padding: EdgeInsets.all(all),
-        color: Colors.blue,
+        color: Color(0xFF4a4e69),
         child: child,
       ),
     );
@@ -542,21 +544,23 @@ Future kdbmela(UserRegistration users) async {
 
 void showdg(BuildContext context, String title, String message) {
   showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-              title: new Text(title),
-              content: Text(message),
-              actions: <Widget>[
-                new ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    // dismisses only the dialog and returns nothing
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
-                  },
-                  child: Text("Ok"),
-                )
-              ]));
+    context: context,
+    builder: (context) => new AlertDialog(
+      title: new Text(title),
+      content: Text(message),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            // dismisses only the dialog and returns nothing
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+          child: Text("Ok"),
+        )
+      ],
+    ),
+  );
 }

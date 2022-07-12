@@ -29,6 +29,7 @@ environment:
 dependencies:
   cloud_firestore: ^3.1.18
   cupertino_icons: ^1.0.5
+  dropdown_search: ^5.0.2
   file_picker: ^4.6.1
   firebase_auth: ^3.3.20
   firebase_core: ^1.18.0
@@ -40,10 +41,10 @@ dependencies:
   google_sign_in: ^5.3.3
   http: ^0.13.4
   image_picker: ^0.8.5+3
+  marquee: ^2.2.3
   provider: ^6.0.3
   snippet_coder_utils: ^1.0.12
   timelines: ^0.1.0
-  dropdown_search: ^5.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
