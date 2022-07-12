@@ -1,3 +1,4 @@
+import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 import 'package:mgmt/pages/login.dart';
@@ -5,6 +6,10 @@ import 'package:mgmt/pages/profile.dart';
 import 'package:mgmt/pages/SearchByCategory.dart';
 import 'package:mgmt/pages/shopalloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mgmt/pages/raiseIssue.dart';
+import 'package:mgmt/pages/details.dart';
+import 'package:mgmt/pages/progress.dart';
+import 'package:mgmt/pages/gallery.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +25,103 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home Page'),
         backgroundColor: Color(0xFF4a4e69),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: const EdgeInsets.all(0),
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xFF4a4e69),
+              ), //BoxDecoration
+              child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: Color(0xFF4a4e69)),
+                accountName: Text(
+                  "Amrutanshu Tyagi",
+                  style: TextStyle(fontSize: 18),
+                ),
+                accountEmail: Text("amrutanshutyagi@gmail.com"),
+                currentAccountPictureSize: Size.square(50),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 165, 255, 137),
+                  child: Text(
+                    "A",
+                    style: TextStyle(fontSize: 30.0, color: Color(0xFF4a4e69)),
+                  ), //Text
+                ), //circleAvatar
+              ), //UserAccountDrawerHeader
+            ), //DrawerHeader
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text(' Profile '),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text(' Upload Pictures '),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Gallery(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.bug_report),
+              title: const Text(' Raise Issue '),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RaiseIssue(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.help),
+              title: const Text(' Help Center'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.priority_high),
+              title: const Text(' Check Progress'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProgressPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.share),
+              title: const Text(' Share app '),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('LogOut'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -111,9 +213,14 @@ class _HomePageState extends State<HomePage> {
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    '60',
-                                    style: TextStyle(fontSize: 30),
+                                  child: Countup(
+                                    begin: 0,
+                                    end: 60,
+                                    duration: Duration(seconds: 1),
+                                    //separator: ',',
+                                    style: TextStyle(
+                                      fontSize: 36,
+                                    ),
                                   ),
                                 ),
                                 Text(

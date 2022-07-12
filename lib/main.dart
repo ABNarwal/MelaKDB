@@ -33,7 +33,9 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Scaffold(
-      //body: ShopAlloc(),
-      body: HomePage());
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: HomePage(),
+    );
+  }
 }
