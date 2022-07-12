@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mgmt/pages/home.dart';
 import 'package:mgmt/pages/progress.dart';
 import 'package:mgmt/pages/raiseIssue.dart';
+import 'package:mgmt/pages/SearchByCategory.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -164,6 +165,82 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           title: const Text(
                             'Raise Issue',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RaiseIssue(),
+                              ),
+                            ),
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  // height: 80,
+                  child: Card(
+                    semanticContainer: false,
+                    //clipBehavior:
+                    elevation: 10,
+                    //shadowColor: Color(0xff1DB954),
+                    color: Color(0xff4a4e69),
+                    margin: EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          leading: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          ),
+                          title: const Text(
+                            'Search By Shop Category',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SearchByCategory(),
+                              ),
+                            ),
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  // height: 80,
+                  child: Card(
+                    semanticContainer: false,
+                    //clipBehavior:
+                    elevation: 10,
+                    //shadowColor: Color(0xff1DB954),
+                    color: Color(0xff4a4e69),
+                    margin: EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          leading: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          ),
+                          title: const Text(
+                            'Search By Shop Number',
                             style: TextStyle(color: Colors.white),
                           ),
                           onTap: () => {

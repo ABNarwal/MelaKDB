@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:mgmt/pages/Display.dart';
 import 'package:mgmt/pages/ShowListPage.dart';
 import 'package:mgmt/pages/details.dart';
-import 'package:mgmt/pages/list.dart';
+
 import 'package:mgmt/pages/login.dart';
-import 'package:mgmt/pages/searchDropdown.dart';
+import 'package:mgmt/pages/SearchByCategory.dart';
 import 'package:mgmt/pages/shopalloc.dart';
 import 'package:mgmt/pages/home.dart';
 import 'package:mgmt/pages/profile.dart';

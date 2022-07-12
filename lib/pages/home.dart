@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mgmt/pages/login.dart';
 import 'package:mgmt/pages/profile.dart';
-import 'package:mgmt/pages/searchDropdown.dart';
+import 'package:mgmt/pages/SearchByCategory.dart';
 import 'package:mgmt/pages/shopalloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -46,15 +46,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: (() {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DropDownSearch()),
-            );
-          }),
-          child: Icon(Icons.search),
         ),
       );
 }

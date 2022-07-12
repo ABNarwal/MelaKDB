@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 import '../Models/userRegistration.dart';
 import 'package:http/http.dart' as http;
 
-class DropDownSearch extends StatefulWidget {
-  DropDownSearch({Key? key}) : super(key: key);
+class SearchByShopNumber extends StatefulWidget {
+  SearchByShopNumber({Key? key}) : super(key: key);
 
   @override
-  State<DropDownSearch> createState() => _DropDownSearchState();
+  State<SearchByShopNumber> createState() => _SearchByShopNumberState();
 }
 
-class _DropDownSearchState extends State<DropDownSearch> {
-  String? dropdownvalue = 'Search By Category';
-  final List<String> myItems = [
-    'Search By Category',
-    'food',
-    'NZCC',
-    'education',
-    'cosmetics',
-    'jewellery',
-    'handicrafts',
-    'handloom'
-  ];
+class _SearchByShopNumberState extends State<SearchByShopNumber> {
+  // String? dropdownvalue = 'Select All';
+  // final List<String> myItems = [
+  //   'Select All',
+  //   'food',
+  //   'NZCC',
+  //   'education',
+  //   'cosmetics',
+  //   'jewellery',
+  //   'handicrafts',
+  //   'handloom'
+  // ];
 
   List<UserRegistration>? initialData;
   List<UserRegistration>? filteredByCatData;
@@ -49,47 +49,51 @@ class _DropDownSearchState extends State<DropDownSearch> {
     super.initState();
   }
 
-  void setFilter(String value) {
-    filteredByCatData?.clear();
-    filteredByCatData =
-        initialData! ////! means if initial data is null then no need to move ahead just stop here,don't perform where action
-            .where((element) => element.category == value)
-            .toList(); //element is value we pass on to this method on changed of dropdown value
-  }
+  // void setFilter(String value) {
+  //   filteredByCatData?.clear();
+  //   // if (value == 'Select All') {
+  //   //   filteredByCatData = initialData;
+  //   //   return;
+  //   // }
+  //   filteredByCatData =
+  //       initialData! ////! means if initial data is null then no need to move ahead just stop here,don't perform where action
+  //           .where((element) => element.category == value)
+  //           .toList(); //element is value we pass on to this method on changed of dropdown value
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.greenAccent,
-        title: Text("Search By Category"),
+        title: Text("Search By Shop Number"),
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-              decoration: BoxDecoration(
-                  border: Border.all(width: 5, color: Colors.greenAccent)),
-              child: DropdownButton(
-                  borderRadius: BorderRadius.circular(5),
-                  alignment: Alignment.topCenter,
-                  value: dropdownvalue,
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  items: myItems.map((String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  }).toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      dropdownvalue = newValue as String?;
-                      setFilter(dropdownvalue!);
-                    });
-                  }),
-            ),
+                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                decoration: BoxDecoration(
+                    border: Border.all(width: 5, color: Colors.greenAccent)),
+                // child: DropdownButton(
+                //     borderRadius: BorderRadius.circular(5),
+                //     alignment: Alignment.topCenter,
+                //     value: dropdownvalue,
+                //     icon: const Icon(Icons.keyboard_arrow_down),
+                //     items: myItems.map((String items) {
+                //       return DropdownMenuItem(
+                //         value: items,
+                //         child: Text(items),
+                //       );
+                //     }).toList(),
+                //     onChanged: (newValue) {
+                //       setState(() {
+                //         dropdownvalue = newValue as String?;
+                //         setFilter(dropdownvalue!);
+                //       });
+                //     }),
+                child: TextBo),
             Expanded(
               child: ListView.builder(
                   itemCount:
