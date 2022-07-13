@@ -1,5 +1,7 @@
 import 'package:countup/countup.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:marquee/marquee.dart';
 import 'package:mgmt/pages/login.dart';
 import 'package:mgmt/pages/profile.dart';
@@ -10,6 +12,8 @@ import 'package:mgmt/pages/raiseIssue.dart';
 import 'package:mgmt/pages/details.dart';
 import 'package:mgmt/pages/progress.dart';
 import 'package:mgmt/pages/gallery.dart';
+
+import 'ShopCat.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -123,130 +127,234 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                /*
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProfilePage(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Go to Profile",
-                      style: TextStyle(
+      body: Padding(
+        padding: EdgeInsets.only(top: 20.0),
+        child: Center(
+          child: Column(
+            //mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                child: Text(
+                  'Last date to register: XX/ XX/ 2022',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                child: Text('Date and Time of Draw : XX/ XX/ 2022 , XX:XX:XX',
+                    style: TextStyle(
+                        color: Colors.red,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color(0xFF4a4e69),
-                        decorationStyle: TextDecorationStyle.double,
-                      ),
-                    ),
-                  ),
-                  */
-                Container(
-                  child: Text(
-                    'Last date to register: XX/ XX/ 2022',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                // Container(
-                //   child: Text(
-                //     'Last date to register: XX/ XX/ 2022',
-                //     style: TextStyle(color: Colors.red),
-                //   ),
-                // ),
-                //   SingleChildScrollView(
-                //     scrollDirection: Axis.horizontal,
-                //     child: Row(
-                //       children: [
-                //         Container(
-                //           color: Colors.green, // Yellow
-                //           height: 200.0,
-                //           width: 200.0,
-                //         ),
-                //         Container(
-                //           color: Colors.red, // Yellow
-                //           height: 200.0,
-                //           width: 200.0,
-                //         ),
-                //         Container(
-                //           color: Colors.yellow, // Yellow
-                //           height: 200.0,
-                //           width: 200.0,
-                //         ),
-                //         Container(
-                //           color: Colors.black, // Yellow
-                //           height: 200.0,
-                //           width: 200.0,
-                //         ),
-                //       ],
-                //     ),
-                //   )
-                GridView.builder(
-                  shrinkWrap: true,
-                  // padding: const EdgeInsets.symmetric(horizontal: 30),
-                  itemCount: 10,
-                  itemBuilder: (ctx, i) {
-                    return Card(
-                      child: Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        margin: EdgeInsets.all(5),
-                        padding: EdgeInsets.all(5),
-                        child: Stack(
-                          children: [
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Countup(
-                                    begin: 0,
-                                    end: 60,
-                                    duration: Duration(seconds: 1),
-                                    //separator: ',',
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'Title',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                        fontSize: 15)),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: GridView.count(
+                  primary: false,
+                  padding: const EdgeInsets.all(20),
+                  //crossAxisSpacing: 5,
+                  //mainAxisSpacing: 5,
+                  crossAxisCount: 2,
+                  children: [
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
                         ),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
-                    );
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.0,
-                    crossAxisSpacing: 0.0,
-                    mainAxisSpacing: 5,
-                    mainAxisExtent: 100,
-                  ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Total Shops",
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          hoverColor: Colors.white,
+                          child: Text(
+                            "850",
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Select All'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.fromLTRB(5, 20, 5, 20)),
+                        Text(
+                          "Reserved",
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("150",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {},
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "NZCC Shops",
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'NZCC'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Saras Shops",
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {},
+                        ),
+                      ]),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              // GridView.builder(
+              //   shrinkWrap: true,
+              //   // padding: const EdgeInsets.symmetric(horizontal: 30),
+              //   itemCount: 10,
+              //   itemBuilder: (ctx, i) {
+              //     return Card(
+              //       color: Color(0xFF4a4e69),
+              //       child: Container(
+              //         height: 100,
+              //         decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.circular(25)),
+              //         margin: EdgeInsets.all(5),
+              //         padding: EdgeInsets.all(5),
+              //         child: Stack(
+              //           children: [
+              //             Column(
+              //               // mainAxisAlignment: MainAxisAlignment.center,
+              //               // crossAxisAlignment: CrossAxisAlignment.center,
+              //               children: [
+              //                 Text(
+              //                   'Title',
+              //                   style: TextStyle(
+              //                     fontSize: 32,
+              //                     fontWeight: FontWeight.bold,
+              //                   ),
+              //                 ),
+              //                 Expanded(
+              //                   child: Countup(
+              //                     begin: 0,
+              //                     end: 60,
+              //                     duration: Duration(seconds: 1),
+              //                     //separator: ',',
+              //                     style: TextStyle(
+              //                       fontSize: 26,
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ],
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     );
+              //   },
+              //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //     crossAxisCount: 2,
+              //     childAspectRatio: 1.0,
+              //     crossAxisSpacing: 0.0,
+              //     mainAxisSpacing: 5,
+              //     mainAxisExtent: 100,
+              //   ),
+              // ),
+            ],
           ),
         ),
       ),

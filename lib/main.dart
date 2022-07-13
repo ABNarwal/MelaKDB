@@ -25,6 +25,11 @@ Future<void> main() async {
       title: 'Shop Allocation',
       theme: ThemeData(
         primaryColor: primaryColor,
+        primarySwatch: Colors.blue,
+        // textTheme: Theme.of(context).textTheme.apply(
+        //       bodyColor: Colors.pinkAccent, //<-- SEE HERE
+        //       displayColor: Colors.pinkAccent, //<-- SEE HERE
+        //     ),
       ),
       home: MyApp(),
     ),
