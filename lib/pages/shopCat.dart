@@ -33,8 +33,8 @@ class _ShopCatState extends State<ShopCat> {
           .get(Uri.parse('http://103.87.24.58/kdbmela/UserRegistration'));
       if (response.statusCode == 200) {
         initialData = userRegistrationFromJson(response.body);
-        setFilter(widget.Cat);
-        return initialData;
+
+        print(initialData);
       } else {
         return throw Exception('Failed to load ...');
       }
@@ -47,7 +47,7 @@ class _ShopCatState extends State<ShopCat> {
   void initState() {
     // TODO: implement initState
 
-    fetchData();
+    fetchData().then((value) => setFilter(widget.Cat));
 
     super.initState();
   }
@@ -55,14 +55,19 @@ class _ShopCatState extends State<ShopCat> {
   void setFilter(String value) {
     filteredByCatData?.clear();
     if (value == 'Select All') {
-      filteredByCatData = initialData;
+      setState(() {
+        filteredByCatData = initialData;
+      });
+
       return;
     }
 
-    filteredByCatData =
-        initialData! ////! means if initial data is null then no need to move ahead just stop here,don't perform where action
-            .where((element) => element.category == value)
-            .toList(); //element is value we pass on to this method on changed of dropdown value
+    setState(() {
+      filteredByCatData =
+          initialData! ////! means if initial data is null then no need to move ahead just stop here,don't perform where action
+              .where((element) => element.category == value)
+              .toList(); //element is value we pass on to this method on changed of dropdown value
+    });
   }
 
   @override

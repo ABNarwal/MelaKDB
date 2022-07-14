@@ -216,14 +216,14 @@ class _DetailsPageState extends State<DetailsPage> {
     final catField = DropdownButtonFormField<String>(
       value: _catController,
       items: [
-        'Categories',
-        'food',
+        'Select',
+        'Food',
         'NZCC',
-        'education',
-        'cosmetics',
-        'jewellery',
-        'handicrafts',
-        'handloom'
+        'Education',
+        'Cosmetics',
+        'Jewellery',
+        'Handicrafts',
+        'Handlooms'
       ]
           .map((label) => DropdownMenuItem(
                 child: Text(label.toString()),

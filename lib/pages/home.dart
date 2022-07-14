@@ -1,4 +1,5 @@
 import 'package:countup/countup.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -111,12 +112,25 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.search),
+              title: const Text(' Search By Category'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchByCategory(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.share),
               title: const Text(' Share app '),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
+
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('LogOut'),
@@ -162,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(20),
                   //crossAxisSpacing: 5,
                   //mainAxisSpacing: 5,
-                  crossAxisCount: 2,
+                  crossAxisCount: 3,
                   children: [
                     Card(
                       shape: RoundedRectangleBorder(
@@ -178,7 +192,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
                           "Total Shops",
-                          style: TextStyle(fontSize: 24, color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                         SizedBox(
                           height: 10,
@@ -217,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(padding: EdgeInsets.fromLTRB(5, 20, 5, 20)),
                         Text(
                           "Reserved",
-                          style: TextStyle(fontSize: 24, color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                         SizedBox(
                           height: 10,
@@ -247,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
                           "NZCC Shops",
-                          style: TextStyle(fontSize: 24, color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                         SizedBox(
                           height: 10,
@@ -283,7 +297,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
                           "Saras Shops",
-                          style: TextStyle(fontSize: 24, color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                         SizedBox(
                           height: 10,
@@ -295,7 +309,265 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.white,
                                 decoration: TextDecoration.underline,
                               )),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Saras'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Food Shops",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("20",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Food'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Furniture Shops",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Furniture'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Cosmetic Shops",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Cosmetics'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Book Shops",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Education'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Jewellery Shops",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: ' Jewellery'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Handicraft Shops",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Handicrafts'))));
+                          },
+                        ),
+                      ]),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        //<-- 2. SEE HERE
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: Color(0xFF4a4e69),
+                      child: Column(children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Handloom Shops",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          child: Text("100",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        ShopCat(Cat: 'Handlooms'))));
+                          },
                         ),
                       ]),
                     ),
