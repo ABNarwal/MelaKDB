@@ -23,6 +23,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+var drawerText = TextStyle(color: Colors.blue);
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,9 @@ class _HomePageState extends State<HomePage> {
             ), //DrawerHeader
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text(' Profile '),
+              title: const Text(
+                ' Profile ',
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -111,18 +115,7 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.search),
-              title: const Text(' Search By Category'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SearchByCategory(),
-                  ),
-                );
-              },
-            ),
+
             ListTile(
               leading: const Icon(Icons.share),
               title: const Text(' Share app '),
@@ -141,6 +134,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      backgroundColor: Colors.white70,
       body: Padding(
         padding: EdgeInsets.only(top: 20.0),
         child: Center(
@@ -174,11 +168,12 @@ class _HomePageState extends State<HomePage> {
                 child: GridView.count(
                   primary: false,
                   padding: const EdgeInsets.all(20),
-                  //crossAxisSpacing: 5,
-                  //mainAxisSpacing: 5,
-                  crossAxisCount: 3,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 15,
+                  crossAxisCount: 2,
                   children: [
                     Card(
+                      elevation: 30,
                       shape: RoundedRectangleBorder(
                         //<-- 2. SEE HERE
                         side: BorderSide(
@@ -187,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -226,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.fromLTRB(5, 20, 5, 20)),
                         Text(
@@ -256,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -292,7 +287,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -314,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: ((context) =>
-                                        ShopCat(Cat: 'Saras'))));
+                                        ShopCat(Cat: 'Saras'.toLowerCase()))));
                           },
                         ),
                       ]),
@@ -328,7 +323,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -350,7 +345,7 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: ((context) =>
-                                        ShopCat(Cat: 'Food'))));
+                                        ShopCat(Cat: 'Food'.toLowerCase()))));
                           },
                         ),
                       ]),
@@ -364,7 +359,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -385,8 +380,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        ShopCat(Cat: 'Furniture'))));
+                                    builder: ((context) => ShopCat(
+                                        Cat: 'Furniture'.toLowerCase()))));
                           },
                         ),
                       ]),
@@ -400,7 +395,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -421,8 +416,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        ShopCat(Cat: 'Cosmetics'))));
+                                    builder: ((context) => ShopCat(
+                                        Cat: 'Cosmetics'.toLowerCase()))));
                           },
                         ),
                       ]),
@@ -436,11 +431,11 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
-                          "Book Shops",
+                          "Education Shops",
                           style: TextStyle(color: Colors.white),
                         ),
                         SizedBox(
@@ -457,8 +452,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        ShopCat(Cat: 'Education'))));
+                                    builder: ((context) => ShopCat(
+                                        Cat: 'Education'.toLowerCase()))));
                           },
                         ),
                       ]),
@@ -472,7 +467,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      // color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -493,8 +488,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        ShopCat(Cat: ' Jewellery'))));
+                                    builder: ((context) => ShopCat(
+                                        Cat: ' Jewellery'.toLowerCase()))));
                           },
                         ),
                       ]),
@@ -508,7 +503,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -529,8 +524,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        ShopCat(Cat: 'Handicrafts'))));
+                                    builder: ((context) => ShopCat(
+                                        Cat: 'Handicrafts'.toLowerCase()))));
                           },
                         ),
                       ]),
@@ -544,7 +539,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      color: Color(0xFF4a4e69),
+                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -565,8 +560,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        ShopCat(Cat: 'Handlooms'))));
+                                    builder: ((context) => ShopCat(
+                                        Cat: 'Handlooms'.toLowerCase()))));
                           },
                         ),
                       ]),

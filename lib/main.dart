@@ -19,18 +19,44 @@ const primaryColor = Color(0xFF4a4e69);
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  BuildContext context;
+  var drawerText = TextStyle(color: Colors.blue);
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shop Allocation',
       theme: ThemeData(
-        primaryColor: primaryColor,
-        primarySwatch: Colors.blue,
-        // textTheme: Theme.of(context).textTheme.apply(
-        //       bodyColor: Colors.pinkAccent, //<-- SEE HERE
-        //       displayColor: Colors.pinkAccent, //<-- SEE HERE
-        //     ),
-      ),
+          primaryColor: primaryColor,
+          //primarySwatch: Colors.blue,
+
+          textTheme: TextTheme(
+              // headline1: TextStyle(
+              //     fontSize: 30,
+              //     /*fontWeight: FontWeight.bold,*/ color: Colors.white),
+              headline6: TextStyle(fontSize: 24.0, color: Colors.white),
+              bodyText1: TextStyle(fontSize: 18),
+              bodyText2: TextStyle(fontSize: 18),
+              //subtitle1: TextStyle(color: Colors.white, fontSize: 20),
+              subtitle2: TextStyle(fontSize: 18)),
+          iconTheme: IconThemeData(color: Colors.white, size: 26),
+          cardTheme: CardTheme(
+              elevation: 30,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.white,
+                  width: 3,
+                ),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: Color(0xFF4a4e69)),
+          dividerColor: Colors.white,
+          listTileTheme: ListTileThemeData(
+            iconColor: Colors.white,
+            textColor: Colors.white,
+          ),
+          drawerTheme: DrawerThemeData(
+            backgroundColor: Color(0xFF4a4e69),
+          )),
       home: MyApp(),
     ),
   );

@@ -75,95 +75,106 @@ class _ShopCatState extends State<ShopCat> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff4a4e69),
-        title: Text("Search By Category"),
+        title: Text(widget.Cat + " Shops"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                  itemCount:
-                      filteredByCatData == null ? 0 : filteredByCatData?.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 15),
-                          width: double.infinity,
-                          child: Card(
-                            elevation: 5,
-                            color: Color(0xff4a4e69),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Text("Shop Name:" + "",
-                                //     style:
-                                //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                                ListTile(
-                                  leading: Text("Shop No :"),
-                                  title: Text((index + 1).toString()),
-                                  dense: true,
-                                ),
-                                // Text("Shop Category:" + query,
-                                //     style:
-                                //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                                ListTile(
-                                  leading: Text("Shop Category :"),
-                                  title:
-                                      Text(filteredByCatData![index].category),
-                                  dense: true,
-                                ),
-                                // Row(
-                                //   children: [
-                                //     Text("How to Reach:",
-                                //         style: TextStyle(
-                                //             fontSize: 16, fontWeight: FontWeight.bold)),
-                                //     Icon(Icons.location_on),
-                                //   ],
-                                // ),
-                                const ListTile(
-                                  leading: Text("How to Reach :"),
-                                  title: Icon(Icons.location_on),
-                                  dense: true,
-                                ),
-                                // Text("Contact No:" + "",
-                                //     style:
-                                //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                                const ListTile(
-                                  leading: Text("Contact Us :"),
-                                  title: Icon(Icons.whatsapp_outlined),
-                                  dense: true,
-                                ),
-                                const ListTile(
-                                  leading: Text("Email Us :"),
-                                  title: Text(""),
-                                  dense: true,
-                                ),
-                                const ListTile(
-                                  leading: Text("Address :"),
-                                  title: Text(""),
-                                  dense: true,
-                                ),
-                                const ListTile(
-                                  leading: Text("View Photo"),
-                                  title: Icon(Icons.camera_alt_outlined),
-                                  dense: true,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    );
-                  }),
+      body: filteredByCatData == null
+          ? Center(
+              child: CircularProgressIndicator(
+                color: Color(0xff4a4e69),
+              ),
             )
-          ],
-        ),
-      ),
+          : Padding(
+              padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: filteredByCatData == null
+                            ? 0
+                            : filteredByCatData?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 15),
+                                width: double.infinity,
+                                child: Card(
+                                  elevation: 5,
+                                  color: Color(0xff4a4e69),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // Text("Shop Name:" + "",
+                                      //     style:
+                                      //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                      ListTile(
+                                        leading: Text("Shop No :"),
+                                        title: Text((index + 1).toString()),
+                                        dense: true,
+                                      ),
+                                      // Text("Shop Category:" + query,
+                                      //     style:
+                                      //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                      ListTile(
+                                        leading: Text("Shop Category :"),
+                                        title: Text(
+                                            filteredByCatData![index].category),
+                                        dense: true,
+                                      ),
+                                      // Row(
+                                      //   children: [
+                                      //     Text("How to Reach:",
+                                      //         style: TextStyle(
+                                      //             fontSize: 16, fontWeight: FontWeight.bold)),
+                                      //     Icon(Icons.location_on),
+                                      //   ],
+                                      // ),
+                                      const ListTile(
+                                        leading: Text("How to Reach :"),
+                                        title: Icon(Icons.location_on_outlined),
+                                        dense: true,
+                                      ),
+                                      // Text("Contact No:" + "",
+                                      //     style:
+                                      //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                      ListTile(
+                                        leading: Text("Contact Us :"),
+                                        title: Text(initialData![index].mobile),
+                                        trailing: Icon(Icons.whatsapp_outlined),
+                                        dense: true,
+                                      ),
+                                      ListTile(
+                                        leading: Text("Email Us :"),
+                                        title: Text(initialData![index].email),
+                                        trailing: Icon(Icons.email_outlined),
+                                        dense: true,
+                                      ),
+                                      const ListTile(
+                                        leading: Text("Address :"),
+                                        title: Text("Address"),
+                                        dense: true,
+                                      ),
+                                      ListTile(
+                                        leading: Text("View Photo"),
+                                        title: Icon(Icons.camera_alt_outlined),
+                                        // trailing: Image(image: initialData[index].photo.),
+                                        dense: true,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          );
+                        }),
+                  )
+                ],
+              ),
+            ),
     );
   }
 }

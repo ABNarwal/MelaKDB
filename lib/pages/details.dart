@@ -50,7 +50,7 @@ class _DetailsPageState extends State<DetailsPage> {
   final addressEC = new TextEditingController();
 
   String _stateController = 'Haryana';
-  String _catController = 'Categories';
+  String _catController = 'Select';
   String _genderController = 'Male';
 
   @override
