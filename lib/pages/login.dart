@@ -11,6 +11,7 @@ import 'package:mgmt/pages/profile.dart';
 import 'package:mgmt/pages/register.dart';
 import 'package:mgmt/provider/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override

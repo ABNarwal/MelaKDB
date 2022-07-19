@@ -10,6 +10,8 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key}) : super(key: key);
 
@@ -457,6 +459,12 @@ class _DetailsPageState extends State<DetailsPage> {
                       ElevatedButton(
                         child: const Text('Send'),
                         onPressed: () async {
+                          final prefs = await SharedPreferences.getInstance();
+                          //prefs.setString("userid", _user.uid);
+                          prefs.setString("username", nameEC.text);
+                          prefs.setString("useremail", emailEC.text);
+                          prefs.commit();
+
                           UserRegistration users = UserRegistration(
                             name: nameEC.text,
                             fName: FnameEC.text,

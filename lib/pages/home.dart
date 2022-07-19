@@ -1,6 +1,4 @@
 import 'package:countup/countup.dart';
-import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marquee/marquee.dart';
@@ -13,7 +11,7 @@ import 'package:mgmt/pages/raiseIssue.dart';
 import 'package:mgmt/pages/details.dart';
 import 'package:mgmt/pages/progress.dart';
 import 'package:mgmt/pages/gallery.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'ShopCat.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,36 +21,50 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+String? user_name;
+String? user_email;
 var drawerText = TextStyle(color: Colors.blue);
 
 class _HomePageState extends State<HomePage> {
+  void getNameEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      user_name = prefs.getString("username");
+      user_email = prefs.getString("useremail");
+    });
+  }
+
+  @override
+  void initState() {
+    getNameEmail();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text('Dashboard'),
         backgroundColor: Color(0xFF4a4e69),
       ),
       drawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.all(0),
           children: [
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
                 color: Color(0xFF4a4e69),
               ), //BoxDecoration
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Color(0xFF4a4e69)),
-                accountName: Text(
-                  "Amrutanshu Tyagi",
-                  style: TextStyle(fontSize: 18),
-                ),
-                accountEmail: Text("amrutanshutyagi@gmail.com"),
+                accountName: Text(user_name == null ? "" : user_name!),
+                accountEmail: Text(user_name == null ? "" : user_email!),
                 currentAccountPictureSize: Size.square(50),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 165, 255, 137),
                   child: Text(
-                    "A",
+                    user_name!.substring(0, 1).toUpperCase(),
                     style: TextStyle(fontSize: 30.0, color: Color(0xFF4a4e69)),
                   ), //Text
                 ), //circleAvatar
@@ -61,7 +73,7 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text(
-                ' Profile ',
+                ' Profile Details',
               ),
               onTap: () {
                 Navigator.push(
@@ -161,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                         fontSize: 15)),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20,
               ),
               Expanded(
@@ -173,16 +185,6 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                   children: [
                     Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -213,15 +215,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.fromLTRB(5, 20, 5, 20)),
                         Text(
@@ -243,15 +236,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -279,15 +263,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -315,15 +290,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -351,15 +317,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -387,15 +344,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -423,15 +371,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -459,15 +398,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      // color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -495,15 +425,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -531,15 +452,6 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
-                      shape: RoundedRectangleBorder(
-                        //<-- 2. SEE HERE
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      //color: Color(0xFF4a4e69),
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -569,81 +481,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              // GridView.builder(
-              //   shrinkWrap: true,
-              //   // padding: const EdgeInsets.symmetric(horizontal: 30),
-              //   itemCount: 10,
-              //   itemBuilder: (ctx, i) {
-              //     return Card(
-              //       color: Color(0xFF4a4e69),
-              //       child: Container(
-              //         height: 100,
-              //         decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(25)),
-              //         margin: EdgeInsets.all(5),
-              //         padding: EdgeInsets.all(5),
-              //         child: Stack(
-              //           children: [
-              //             Column(
-              //               // mainAxisAlignment: MainAxisAlignment.center,
-              //               // crossAxisAlignment: CrossAxisAlignment.center,
-              //               children: [
-              //                 Text(
-              //                   'Title',
-              //                   style: TextStyle(
-              //                     fontSize: 32,
-              //                     fontWeight: FontWeight.bold,
-              //                   ),
-              //                 ),
-              //                 Expanded(
-              //                   child: Countup(
-              //                     begin: 0,
-              //                     end: 60,
-              //                     duration: Duration(seconds: 1),
-              //                     //separator: ',',
-              //                     style: TextStyle(
-              //                       fontSize: 26,
-              //                     ),
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     );
-              //   },
-              //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //     crossAxisCount: 2,
-              //     childAspectRatio: 1.0,
-              //     crossAxisSpacing: 0.0,
-              //     mainAxisSpacing: 5,
-              //     mainAxisExtent: 100,
-              //   ),
-              // ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class HorizList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      height: 100.0,
-      child: new ListView.builder(
-        itemBuilder: (context, index) {
-          return new Card(
-              child: new Container(
-            width: 80.0,
-            child: new Text('Hello'),
-            alignment: Alignment.center,
-          ));
-        },
-        scrollDirection: Axis.horizontal,
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Models/userRegistration.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,7 +14,7 @@ class _ShopCatState extends State<ShopCat> {
   String? dropdownvalue = 'Select All';
   final List<String> myItems = [
     'Select All',
-    'food',
+    'Food',
     'NZCC',
     'education',
     'cosmetics',
@@ -143,13 +142,15 @@ class _ShopCatState extends State<ShopCat> {
                                       //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                       ListTile(
                                         leading: Text("Contact Us :"),
-                                        title: Text(initialData![index].mobile),
+                                        title: Text(
+                                            filteredByCatData![index].mobile),
                                         trailing: Icon(Icons.whatsapp_outlined),
                                         dense: true,
                                       ),
                                       ListTile(
                                         leading: Text("Email Us :"),
-                                        title: Text(initialData![index].email),
+                                        title: Text(
+                                            filteredByCatData![index].email),
                                         trailing: Icon(Icons.email_outlined),
                                         dense: true,
                                       ),
