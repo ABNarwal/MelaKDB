@@ -28,7 +28,12 @@ class TimeLine extends StatefulWidget {
 }
 
 class _TimeLineState extends State<TimeLine> {
-  List<Color> colors = [Colors.grey, Colors.blue, Colors.amber, Colors.green];
+  List<Color> colors = [
+    Colors.deepPurple,
+    Colors.blue,
+    Colors.amber,
+    Colors.green
+  ];
   late List<TimelineCard> timeline;
   @override
   void initState() {
@@ -51,19 +56,40 @@ class _TimeLineState extends State<TimeLine> {
                     Container(
                       width: 2,
                       height: 50,
-                      color: index == 0 ? Colors.white : Colors.black,
+                      color: index == 0 ? Colors.grey : Colors.black,
+                      // color: index == 0
+                      //     ? Colors.green
+                      //     : index == 1
+                      //         ? Colors.green
+                      //         : index == 2
+                      //             ? Colors.green
+                      //             : index == 3
+                      //                 ? Colors.green
+                      //                 : Colors.grey,
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 5, right: 5),
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                          color: colors[(index) % 4],
+                          color: colors[(index) %
+                              4], //Color of icons from List of Colors available
+                          //color: index == 0 ? Colors.green : Colors.grey,
+                          // color: index == 0
+                          //     ? Colors.green
+                          //     : index == 1
+                          //         ? Colors.green
+                          //         : index == 2
+                          //             ? Colors.green
+                          //             : index == 3
+                          //                 ? Colors.green
+                          //                 : Colors.grey,
                           borderRadius: BorderRadius.circular(50)),
                       child: Icon(
                         timeline[index].icon,
                         color: Colors.white,
                       ),
                     ),
+                    //a ? b: c ? d : e ? f : g ? h : i
                     Container(
                       width: 2,
                       height: 50,
@@ -77,7 +103,11 @@ class _TimeLineState extends State<TimeLine> {
                   child: Container(
                     margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: index <= 2
+                          ? Colors.greenAccent
+                          : index == 3
+                              ? Colors.redAccent
+                              : Colors.white,
                       border: Border(
                         top: BorderSide(width: 4, color: Color(0xff4a4e69)),
                       ),

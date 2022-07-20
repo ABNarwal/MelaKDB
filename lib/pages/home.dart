@@ -13,6 +13,8 @@ import 'package:mgmt/pages/progress.dart';
 import 'package:mgmt/pages/gallery.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ShopCat.dart';
+import 'dart:math';
+import 'package:share_plus/share_plus.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,6 +26,8 @@ class HomePage extends StatefulWidget {
 String? user_name;
 String? user_email;
 var drawerText = TextStyle(color: Colors.blue);
+String ShareText =
+    "Welcome to Help the Needy App, Install the app for helping the needy from : https://play.google.com/store/apps/details?id=com.help.theneedy";
 
 class _HomePageState extends State<HomePage> {
   void getNameEmail() async {
@@ -62,9 +66,12 @@ class _HomePageState extends State<HomePage> {
                 accountEmail: Text(user_name == null ? "" : user_email!),
                 currentAccountPictureSize: Size.square(50),
                 currentAccountPicture: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 165, 255, 137),
+                  backgroundColor: Colors
+                      .primaries[Random().nextInt(Colors.primaries.length)],
                   child: Text(
-                    user_name!.substring(0, 1).toUpperCase(),
+                    user_name != null
+                        ? user_name!.substring(0, 1).toUpperCase()
+                        : "",
                     style: TextStyle(fontSize: 30.0, color: Color(0xFF4a4e69)),
                   ), //Text
                 ), //circleAvatar
@@ -132,6 +139,7 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.share),
               title: const Text(' Share app '),
               onTap: () {
+                Share.share(ShareText);
                 Navigator.pop(context);
               },
             ),
@@ -185,6 +193,8 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                   children: [
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -215,6 +225,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.fromLTRB(5, 20, 5, 20)),
                         Text(
@@ -236,6 +248,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -263,6 +277,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -311,12 +327,14 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: ((context) =>
-                                        ShopCat(Cat: 'Food'.toLowerCase()))));
+                                        ShopCat(Cat: 'Food'))));
                           },
                         ),
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -344,6 +362,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -371,6 +391,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -398,6 +420,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -425,6 +449,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(
@@ -452,6 +478,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                     ),
                     Card(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
                       child: Column(children: [
                         Padding(padding: EdgeInsets.all(20)),
                         Text(

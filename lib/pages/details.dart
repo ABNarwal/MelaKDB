@@ -461,7 +461,8 @@ class _DetailsPageState extends State<DetailsPage> {
                         onPressed: () async {
                           final prefs = await SharedPreferences.getInstance();
                           //prefs.setString("userid", _user.uid);
-                          prefs.setString("username", nameEC.text);
+                          prefs.setString(
+                              "username", nameEC.text); //key : value
                           prefs.setString("useremail", emailEC.text);
                           prefs.commit();
 

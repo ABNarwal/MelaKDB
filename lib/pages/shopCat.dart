@@ -64,7 +64,8 @@ class _ShopCatState extends State<ShopCat> {
     setState(() {
       filteredByCatData =
           initialData! ////! means if initial data is null then no need to move ahead just stop here,don't perform where action
-              .where((element) => element.category == value)
+              .where((element) =>
+                  element.category.toLowerCase() == value.toLowerCase())
               .toList(); //element is value we pass on to this method on changed of dropdown value
     });
   }
@@ -112,7 +113,10 @@ class _ShopCatState extends State<ShopCat> {
                                       //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                       ListTile(
                                         leading: Text("Shop No :"),
-                                        title: Text((index + 1).toString()),
+                                        //title: Text((index + 1).toString()),
+                                        title: Text(filteredByCatData![index]
+                                            .srno
+                                            .toString()),
                                         dense: true,
                                       ),
                                       // Text("Shop Category:" + query,
@@ -154,9 +158,10 @@ class _ShopCatState extends State<ShopCat> {
                                         trailing: Icon(Icons.email_outlined),
                                         dense: true,
                                       ),
-                                      const ListTile(
+                                      ListTile(
                                         leading: Text("Address :"),
-                                        title: Text("Address"),
+                                        title: Text(
+                                            filteredByCatData![index].address),
                                         dense: true,
                                       ),
                                       ListTile(
