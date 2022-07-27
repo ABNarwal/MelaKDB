@@ -33,6 +33,14 @@ class _RaiseIssueState extends State<RaiseIssue> {
                 value: label,
               ))
           .toList(),
+      decoration: InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black, width: 2.0),
+        ),
+      ),
       hint: Text('Issue'),
       onChanged: (value) {
         setState(
@@ -46,7 +54,8 @@ class _RaiseIssueState extends State<RaiseIssue> {
     final issueField = TextFormField(
       autofocus: false,
       controller: issueEC,
-      keyboardType: TextInputType.name,
+      cursorColor: Colors.black,
+      keyboardType: TextInputType.multiline,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return "Issue can't be empty";
@@ -57,9 +66,19 @@ class _RaiseIssueState extends State<RaiseIssue> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: ".....",
         labelText: "Describe",
       ),
+      maxLines: 10,
     );
 
     return Scaffold(

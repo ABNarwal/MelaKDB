@@ -60,6 +60,7 @@ class _DetailsPageState extends State<DetailsPage> {
     final color = Colors.black;
     //name
     final nameField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: nameEC,
       keyboardType: TextInputType.name,
@@ -73,12 +74,22 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "Enter Name",
         labelText: "Name",
       ),
     );
 
     final FnameField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: FnameEC,
       keyboardType: TextInputType.name,
@@ -92,12 +103,22 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "enter Father Name",
         labelText: "Father Name",
       ),
     );
 
     final districtField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: districtEC,
       keyboardType: TextInputType.name,
@@ -111,12 +132,22 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "enter District",
         labelText: "District",
       ),
     );
 
     final GSTField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: GSTEC,
       keyboardType: TextInputType.name,
@@ -130,12 +161,22 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "enter GST no.",
         labelText: "GST no.",
       ),
     );
 
     final addressField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: addressEC,
       keyboardType: TextInputType.name,
@@ -149,6 +190,15 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "enter Address.",
         labelText: "Address",
       ),
@@ -156,6 +206,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
     //email
     final emailField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: emailEC,
       keyboardType: TextInputType.emailAddress,
@@ -169,12 +220,22 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "enter Email",
         labelText: "Email",
       ),
     );
 
     final MobileField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: mobileEC,
       keyboardType: TextInputType.phone,
@@ -191,12 +252,22 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "enter Mobile Number",
         labelText: "Mobile Number",
       ),
     );
 
     final noOfPeopleField = TextFormField(
+      cursorColor: Colors.black,
       autofocus: false,
       controller: noOfPeopleEC,
       keyboardType: TextInputType.number,
@@ -210,12 +281,29 @@ class _DetailsPageState extends State<DetailsPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: const InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 22),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+          ),
+        ),
         hintText: "enter No of People",
         labelText: "No of People",
       ),
     );
 
     final catField = DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black, width: 2.0),
+        ),
+      ),
       value: _catController,
       items: [
         'Select',
@@ -288,6 +376,14 @@ class _DetailsPageState extends State<DetailsPage> {
               ))
           .toList(),
       hint: Text('Rating'),
+      decoration: InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black, width: 2.0),
+        ),
+      ),
       onChanged: (value) {
         setState(
           () {
@@ -298,6 +394,14 @@ class _DetailsPageState extends State<DetailsPage> {
     );
 
     final genderField = DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+        labelStyle: TextStyle(color: Colors.black),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black, width: 2.0),
+        ),
+      ),
       value: _genderController,
       items: [
         'Male',

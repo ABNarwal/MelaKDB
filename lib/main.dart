@@ -27,14 +27,12 @@ Future<void> main() async {
           //primarySwatch: Colors.blue,
 
           textTheme: TextTheme(
-              // headline1: TextStyle(
-              //     fontSize: 30,
-              //     /*fontWeight: FontWeight.bold,*/ color: Colors.white),
-              headline6: TextStyle(fontSize: 24.0, color: Colors.white),
-              bodyText1: TextStyle(fontSize: 18),
-              bodyText2: TextStyle(fontSize: 18),
-              //subtitle1: TextStyle(color: Colors.white, fontSize: 20),
-              subtitle2: TextStyle(fontSize: 18)),
+            headline6: TextStyle(fontSize: 24.0, color: Colors.white),
+            bodyText1: TextStyle(fontSize: 18),
+            bodyText2: TextStyle(fontSize: 18),
+            subtitle1: TextStyle(color: Colors.white, fontSize: 18),
+            subtitle2: TextStyle(fontSize: 18),
+          ),
           iconTheme: IconThemeData(color: Colors.white, size: 26),
           cardTheme: CardTheme(
               elevation: 30,
@@ -51,6 +49,9 @@ Future<void> main() async {
             iconColor: Colors.white,
             textColor: Colors.white,
           ),
+          buttonTheme: ButtonThemeData(
+              buttonColor: Color.fromARGB(255, 133, 139, 185),
+              hoverColor: Colors.white70),
           drawerTheme: DrawerThemeData(
             backgroundColor: Color(0xFF4a4e69),
           )),
