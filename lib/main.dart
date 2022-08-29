@@ -38,16 +38,16 @@ Future<void> main() async {
               elevation: 30,
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: Colors.white,
+                  color: Colors.white70,
                   width: 3,
                 ),
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              color: Color(0xFF4a4e69)),
+              color: Colors.grey),
           dividerColor: Colors.white,
           listTileTheme: ListTileThemeData(
-            iconColor: Colors.white,
-            textColor: Colors.white,
+            iconColor: Colors.black,
+            textColor: Colors.black,
           ),
           buttonTheme: ButtonThemeData(
               buttonColor: Color.fromARGB(255, 133, 139, 185),

@@ -13,6 +13,7 @@ import 'package:mgmt/pages/details.dart';
 import 'package:mgmt/pages/progress.dart';
 import 'package:mgmt/pages/gallery.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'ProfileCard.dart';
 import 'ShopCat.dart';
 import 'dart:math';
 import 'package:share_plus/share_plus.dart';
@@ -82,8 +83,9 @@ class _HomePageState extends State<HomePage> {
                 currentAccountPictureSize: Size.square(50),
                 currentAccountPicture: CircleAvatar(
                   //backgroundColor: Color(0xFFCCDA38),
-                  backgroundColor: Colors
-                      .primaries[Random().nextInt(Colors.primaries.length)],
+                  // backgroundColor: Colors
+                  //     .primaries[Random().nextInt(Colors.primaries.length)],
+                  backgroundColor: Colors.white,
                   child: Text(
                     user_name != null
                         ? user_name!.substring(0, 1).toUpperCase()
@@ -102,9 +104,13 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ), //DrawerHeader
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
               title: const Text(
                 ' Profile Details',
+                style: TextStyle(color: Colors.white),
               ),
               onTap: () {
                 Navigator.push(
@@ -116,8 +122,14 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.camera_alt),
-              title: const Text(' Upload Pictures '),
+              leading: const Icon(
+                Icons.camera_alt,
+                color: Colors.white,
+              ),
+              title: const Text(
+                ' Upload Pictures ',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -128,8 +140,14 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.bug_report),
-              title: const Text(' Raise Issue '),
+              leading: const Icon(
+                Icons.bug_report,
+                color: Colors.white,
+              ),
+              title: const Text(
+                ' Raise Issue ',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -140,8 +158,14 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.help),
-              title: const Text(' Help Center'),
+              leading: const Icon(
+                Icons.help,
+                color: Colors.white,
+              ),
+              title: const Text(
+                ' Help Center',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => Helpline())));
@@ -150,8 +174,14 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.priority_high),
-              title: const Text(' Check Progress'),
+              leading: const Icon(
+                Icons.priority_high,
+                color: Colors.white,
+              ),
+              title: const Text(
+                ' Check Progress',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -163,8 +193,14 @@ class _HomePageState extends State<HomePage> {
             ),
 
             ListTile(
-              leading: const Icon(Icons.share),
-              title: const Text(' Share app '),
+              leading: const Icon(
+                Icons.share,
+                color: Colors.white,
+              ),
+              title: const Text(
+                ' Share app ',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Share.share(ShareText);
                 Navigator.pop(context);
@@ -172,10 +208,32 @@ class _HomePageState extends State<HomePage> {
             ),
 
             ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('LogOut'),
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+              title: const Text(
+                'LogOut',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.help,
+                color: Colors.white,
+              ),
+              title: const Text(
+                ' Profile Card',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => ProfileCard())));
+
+                // Navigator.pop(context);
               },
             ),
           ],
