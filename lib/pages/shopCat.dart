@@ -98,6 +98,7 @@ class _ShopCatState extends State<ShopCat> {
               padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
               child: Column(
                 children: [
+                  Center(child: Text(filteredByCatData!.length.toString())),
                   Expanded(
                     child: ListView.builder(
                         itemCount: filteredByCatData == null
