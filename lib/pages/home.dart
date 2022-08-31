@@ -18,6 +18,7 @@ import 'ShopCat.dart';
 import 'dart:math';
 import 'package:share_plus/share_plus.dart';
 
+//var len = foo?.length ?? 0;
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -29,7 +30,7 @@ String? user_name;
 String? user_email;
 var drawerText = TextStyle(color: Colors.blue);
 String ShareText =
-    "Welcome to Help the Needy App, Install the app for helping the needy from : https://play.google.com/store/apps/details?id=com.help.theneedy";
+    "Welcome to Mela App, Install the app from : https://play.google.com/store/apps/details?id=com.help.theneedy";
 
 class _HomePageState extends State<HomePage> {
   List<Color> GridColor = [

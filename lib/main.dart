@@ -38,7 +38,7 @@ Future<void> main() async {
               elevation: 30,
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: Colors.white70,
+                  color: Colors.white,
                   width: 3,
                 ),
                 borderRadius: BorderRadius.circular(20.0),
@@ -47,7 +47,7 @@ Future<void> main() async {
           dividerColor: Colors.white,
           listTileTheme: ListTileThemeData(
             iconColor: Colors.black,
-            textColor: Colors.black,
+            textColor: Color(0xFF4a4e69),
           ),
           buttonTheme: ButtonThemeData(
               buttonColor: Color.fromARGB(255, 133, 139, 185),

@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:mgmt/Models/shopRating.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+
+import 'package:mgmt/pages/shopCat.dart';
 
 class RatingShops extends StatefulWidget {
+  int shopNo;
+  RatingShops({Key? key, required this.shopNo}) : super(key: key);
   @override
   _RatingShopsState createState() => _RatingShopsState();
 }
 
 class _RatingShopsState extends State<RatingShops> {
   late final _ratingController;
+  late final _nameController;
+  //late final _shopCodeController = widget.shopNo;
   late double _rating;
 
   double _userRating = 3.0;
@@ -22,6 +31,9 @@ class _RatingShopsState extends State<RatingShops> {
   void initState() {
     super.initState();
     _ratingController = TextEditingController(text: '');
+    _nameController = TextEditingController(text: '');
+    //_shopCodeController = TextEditingController(text: '');
+
     _rating = _initialRating;
   }
 
@@ -53,7 +65,7 @@ class _RatingShopsState extends State<RatingShops> {
                   SizedBox(
                     height: 40.0,
                   ),
-                  _heading('Rate Our Shop'),
+                  _heading('Rate Shop No : ${widget.shopNo}'),
                   _ratingBar(_ratingBarMode),
                   SizedBox(height: 20.0),
                   Text(
@@ -63,25 +75,61 @@ class _RatingShopsState extends State<RatingShops> {
                   SizedBox(height: 40.0),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: TextFormField(
-                      controller: _ratingController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter Remarks',
-                        labelText: 'Enter Remarks',
-                        suffixIcon: MaterialButton(
-                          onPressed: () {
-                            _userRating =
-                                double.parse(_ratingController.text ?? '0.0');
-                            setState(() {});
-                          },
-                          child: Text('Rate'),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: _nameController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter Name',
+                            labelText: 'Enter Your Name',
+                          ),
                         ),
-                      ),
+                        SizedBox(height: 20.0),
+                        // TextFormField(
+                        //   //controller: _shopCodeController,
+                        //   keyboardType: TextInputType.number,
+                        //   decoration: InputDecoration(
+                        //     border: OutlineInputBorder(),
+                        //     hintText: 'Enter shop No',
+                        //     labelText: 'Enter Shop No',
+                        //   ),
+                        // ),
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          controller: _ratingController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter Remarks',
+                            labelText: 'Enter Remarks',
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 40.0),
+                  ElevatedButton(
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      Welcome users = Welcome(
+                        name: _nameController.text,
+                        shopcode: widget.shopNo,
+                        rate: _rating.toInt(),
+                        remarks: _ratingController.text,
+                      );
+                      var res = await kdbmela(users).whenComplete(() => null);
+                      if (res == 200) {
+                        showdg(context, "Success", "Details Submitted");
+                      } else {
+                        showdg(context, "Failure", "Failed!!");
+                      }
+                    },
+                  )
                 ],
               ),
             ),
@@ -136,3 +184,34 @@ Widget _iconButton(BuildContext context, IconData icon) => IconButton(
       splashColor: Colors.amberAccent,
       color: Colors.amber,
     );
+Future kdbmela(Welcome users) async {
+  Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json'
+  };
+  var myUsers = users.toJson();
+  var usersBody = convert.json.encode(myUsers);
+  var res = await http.post(Uri.parse('http://103.87.24.58/kdbmela/ShopRate'),
+      headers: header, body: usersBody);
+  print(res.statusCode);
+  return res.statusCode;
+}
+
+void showdg(BuildContext context, String title, String message) {
+  showDialog(
+    context: context,
+    builder: (context) => new AlertDialog(
+      title: new Text(title),
+      content: Text(message),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            // dismisses only the dialog and returns nothing
+          },
+          child: Text("Ok"),
+        )
+      ],
+    ),
+  );
+}

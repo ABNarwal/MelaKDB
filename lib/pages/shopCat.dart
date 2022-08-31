@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mgmt/pages/Ratingshops.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../Models/userRegistration.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -28,12 +29,8 @@ class _ShopCatState extends State<ShopCat> {
     'handloom'
   ];
   bool _isVisible = true;
-
-  void showToast() {
-    setState(() {
-      _isVisible = !_isVisible;
-    });
-  }
+  int _hide = 0;
+  bool _visible = false;
 
   List<UserRegistration>? initialData;
   List<UserRegistration>? filteredByCatData;
@@ -83,6 +80,27 @@ class _ShopCatState extends State<ShopCat> {
     });
   }
 
+  launchWhatsApp({
+    required int phone,
+    required String message,
+  }) async {
+    String url() {
+      // if (Platform.isAndroid) {
+      //   // add the [https]
+      return "https://wa.me/$phone/?text=${Uri.parse(message)}"; // new line
+      // } else {
+      //   // add the [https]
+      //   return "https://api.whatsapp.com/send?phone=$phone=${Uri.parse(message)}"; // new line
+      // }
+    }
+
+    if (await canLaunch(url())) {
+      await launch(url());
+    } else {
+      throw 'Could not launch ${url()}';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +121,8 @@ class _ShopCatState extends State<ShopCat> {
               padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
               child: Column(
                 children: [
-                  Center(child: Text(filteredByCatData!.length.toString())),
+                  Text(
+                      "Total Shops in this Category : ${filteredByCatData!.length.toString()}"),
                   Expanded(
                     child: ListView.builder(
                         itemCount: filteredByCatData == null
@@ -127,6 +146,10 @@ class _ShopCatState extends State<ShopCat> {
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.0),
+                                    side: BorderSide(
+                                      color: Color(0xFF4a4e69),
+                                      width: 1,
+                                    ),
                                   ),
                                   child: Column(
                                     crossAxisAlignment:
@@ -139,7 +162,9 @@ class _ShopCatState extends State<ShopCat> {
                                         visualDensity: VisualDensity(
                                             horizontal: 0, vertical: -4),
                                         horizontalTitleGap: 80,
-                                        leading: Text("Shop No :"),
+                                        leading: Text(
+                                          "Shop No :",
+                                        ),
                                         //title: Text((index + 1).toString()),
                                         title: Text(filteredByCatData![index]
                                             .srno
@@ -159,7 +184,12 @@ class _ShopCatState extends State<ShopCat> {
                                         dense: true,
                                       ),
                                       Visibility(
-                                          visible: _isVisible,
+                                          visible:
+                                              filteredByCatData![index].srno ==
+                                                          _hide &&
+                                                      _visible
+                                                  ? true
+                                                  : false,
                                           child: Column(
                                             children: [
                                               ListTile(
@@ -169,40 +199,38 @@ class _ShopCatState extends State<ShopCat> {
                                                     vertical: -4),
                                                 leading: Text("How to Reach :"),
                                                 trailing: Icon(
-                                                    Icons.location_on_outlined),
+                                                  Icons.location_on_sharp,
+                                                  color: Colors.redAccent,
+                                                ),
                                                 dense: true,
                                               ),
                                               // Text("Contact No:" + "",
                                               //     style:
                                               //         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                               ListTile(
-                                                horizontalTitleGap: 60,
-                                                visualDensity: VisualDensity(
-                                                    horizontal: 0,
-                                                    vertical: -4),
-                                                leading: Text("Contact Us :"),
-                                                title: Text(
-                                                    filteredByCatData![index]
-                                                        .mobile),
-                                                trailing: InkWell(
-                                                  child: Text(
-                                                    "Rate",
-                                                    style: TextStyle(
-                                                        color: Colors.orange,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          RatingShops(),
+                                                  horizontalTitleGap: 60,
+                                                  visualDensity: VisualDensity(
+                                                      horizontal: 0,
+                                                      vertical: -4),
+                                                  leading: Text("Contact Us :"),
+                                                  title: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      primary: Colors.green,
                                                     ),
-                                                  );
-                                                },
-                                              ),
+                                                    child: Text(
+                                                        filteredByCatData![
+                                                                index]
+                                                            .mobile),
+                                                    onPressed: () {
+                                                      launchWhatsApp(
+                                                          phone: int.parse(
+                                                              filteredByCatData![
+                                                                      index]
+                                                                  .mobile),
+                                                          message: 'Hello');
+                                                    },
+                                                  )),
                                               ListTile(
                                                 horizontalTitleGap: 50,
                                                 visualDensity: VisualDensity(
@@ -212,55 +240,81 @@ class _ShopCatState extends State<ShopCat> {
                                                 title: Text(
                                                     filteredByCatData![index]
                                                         .email),
-                                                trailing:
-                                                    Icon(Icons.email_outlined),
-                                                dense: true,
-                                              ),
-                                              ListTile(
-                                                //horizontalTitleGap: 50,
-                                                visualDensity: VisualDensity(
-                                                    horizontal: 0,
-                                                    vertical: -4),
-                                                leading: Text("Rate Us :"),
-                                                trailing: Text(
-                                                  "($_rating)",
-                                                  style: TextStyle(
-                                                      color:
-                                                          Colors.orangeAccent),
-                                                ),
-                                                title:
-                                                    _ratingBar(_ratingBarMode),
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          RatingShops(),
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                              ListTile(
-                                                horizontalTitleGap: 80,
-                                                visualDensity: VisualDensity(
-                                                    horizontal: 0,
-                                                    vertical: -4),
-                                                leading: Text("Address :"),
-                                                title: Text(
-                                                    filteredByCatData![index]
-                                                        .address),
-                                                dense: true,
-                                              ),
-                                              ListTile(
-                                                visualDensity: VisualDensity(
-                                                    horizontal: 0,
-                                                    vertical: -4),
-                                                leading: Text("View Photo"),
                                                 trailing: Icon(
-                                                    Icons.camera_alt_outlined),
-                                                // trailing: Image(image: initialData[index].photo.),
+                                                    Icons.email_outlined,
+                                                    color: Color.fromARGB(
+                                                        255, 207, 15, 15)),
                                                 dense: true,
                                               ),
+                                              ListTile(
+                                                trailing: ElevatedButton(
+                                                  child: Text(
+                                                    "Feedback",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              RatingShops(
+                                                                  shopNo: filteredByCatData![
+                                                                          index]
+                                                                      .srno)),
+                                                    );
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary: Colors.orange,
+                                                  ),
+                                                ),
+                                                // ListTile(
+                                                //   //horizontalTitleGap: 50,
+                                                //   visualDensity: VisualDensity(
+                                                //       horizontal: 0,
+                                                //       vertical: -4),
+                                                //   leading: Text("Rate Us :"),
+                                                //   trailing: Text(
+                                                //     "($_rating)",
+                                                //     style: TextStyle(
+                                                //         color:
+                                                //             Colors.orangeAccent),
+                                                //   ),
+                                                //   title:
+                                                //       _ratingBar(_ratingBarMode),
+                                                //   onTap: () {
+                                                //     Navigator.push(
+                                                //       context,
+                                                //       MaterialPageRoute(
+                                                //         builder: (context) =>
+                                                //             _RatingShop(context),
+                                                //       ),
+                                                //     );
+                                                //   },
+                                                // ),
+                                                // ListTile(
+                                                //   horizontalTitleGap: 80,
+                                                //   visualDensity: VisualDensity(
+                                                //       horizontal: 0,
+                                                //       vertical: -4),
+                                                //   leading: Text("Address :"),
+                                                //   title: Text(
+                                                //       filteredByCatData![index]
+                                                //           .address),
+                                                //   dense: true,
+                                                // ),
+                                                // ListTile(
+                                                //   visualDensity: VisualDensity(
+                                                //       horizontal: 0,
+                                                //       vertical: -4),
+                                                //   leading: Text("View Photo"),
+                                                //   trailing: Icon(
+                                                //       Icons.camera_alt_outlined),
+                                                //   // trailing: Image(image: initialData[index].photo.),
+                                                //   dense: true,
+                                                // ),
+                                              )
                                             ],
                                           )),
                                       ListTile(
@@ -274,8 +328,14 @@ class _ShopCatState extends State<ShopCat> {
                                                   decoration:
                                                       TextDecoration.underline,
                                                   fontSize: 16,
-                                                  color: Colors.black)),
-                                          onTap: showToast,
+                                                  color: Colors.green)),
+                                          onTap: () {
+                                            setState(() {
+                                              _visible = !_visible;
+                                              _hide = filteredByCatData![index]
+                                                  .srno;
+                                            });
+                                          },
                                         ),
                                       ),
                                     ],
