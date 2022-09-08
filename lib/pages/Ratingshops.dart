@@ -79,7 +79,7 @@ class _RatingShopsState extends State<RatingShops> {
                       children: [
                         TextFormField(
                           controller: _nameController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.name,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Name',
@@ -99,7 +99,7 @@ class _RatingShopsState extends State<RatingShops> {
                         SizedBox(height: 20.0),
                         TextFormField(
                           controller: _ratingController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.name,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Remarks',

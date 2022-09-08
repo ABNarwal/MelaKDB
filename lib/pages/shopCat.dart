@@ -37,8 +37,8 @@ class _ShopCatState extends State<ShopCat> {
 
   Future<List<UserRegistration>?> fetchData() async {
     try {
-      http.Response response = await http
-          .get(Uri.parse('http://103.87.24.58/kdbmela/UserRegistration'));
+      http.Response response = await http.get(Uri.parse(
+          'http://103.87.24.58/kdbmela/UserRegistration/' + widget.Cat));
       if (response.statusCode == 200) {
         initialData = userRegistrationFromJson(response.body);
 
@@ -98,6 +98,14 @@ class _ShopCatState extends State<ShopCat> {
       await launch(url());
     } else {
       throw 'Could not launch ${url()}';
+    }
+  }
+
+  _launchEmail(String email) async {
+    if (await canLaunch("mailto:$email")) {
+      await launch("mailto:$email");
+    } else {
+      throw 'Could not launch';
     }
   }
 
@@ -213,12 +221,14 @@ class _ShopCatState extends State<ShopCat> {
                                                       horizontal: 0,
                                                       vertical: -4),
                                                   leading: Text("Contact Us :"),
-                                                  title: ElevatedButton(
+                                                  title: ElevatedButton.icon(
+                                                    icon: Icon(Icons
+                                                        .whatsapp_outlined),
                                                     style: ElevatedButton
                                                         .styleFrom(
                                                       primary: Colors.green,
                                                     ),
-                                                    child: Text(
+                                                    label: Text(
                                                         filteredByCatData![
                                                                 index]
                                                             .mobile),
@@ -237,16 +247,44 @@ class _ShopCatState extends State<ShopCat> {
                                                     horizontal: 0,
                                                     vertical: -4),
                                                 leading: Text("Email Us :"),
-                                                title: Text(
-                                                    filteredByCatData![index]
-                                                        .email),
-                                                trailing: Icon(
-                                                    Icons.email_outlined,
-                                                    color: Color.fromARGB(
-                                                        255, 207, 15, 15)),
-                                                dense: true,
+                                                title: ElevatedButton.icon(
+                                                  icon: Icon(
+                                                      Icons.email_outlined),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  207,
+                                                                  15,
+                                                                  15)),
+                                                  label: Text(
+                                                      filteredByCatData![index]
+                                                          .email),
+                                                  onPressed: () {
+                                                    _launchEmail(
+                                                        filteredByCatData![
+                                                                index]
+                                                            .email);
+                                                  },
+                                                ),
                                               ),
                                               ListTile(
+                                                leading: Row(
+                                                  children: [
+                                                    _ratingBar(double.parse(
+                                                        filteredByCatData![
+                                                                index]
+                                                            .gsTNo)),
+                                                    Text(
+                                                      "(${double.parse(filteredByCatData![index].gsTNo)})",
+                                                      style: TextStyle(
+                                                          color: Colors.green,
+                                                          fontSize: 20),
+                                                    )
+                                                  ],
+                                                ),
+
                                                 trailing: ElevatedButton(
                                                   child: Text(
                                                     "Feedback",
@@ -331,9 +369,16 @@ class _ShopCatState extends State<ShopCat> {
                                                   color: Colors.green)),
                                           onTap: () {
                                             setState(() {
-                                              _visible = !_visible;
-                                              _hide = filteredByCatData![index]
-                                                  .srno;
+                                              if (_hide ==
+                                                  filteredByCatData![index]
+                                                      .srno) {
+                                                _visible = !_visible;
+                                              } else {
+                                                _visible = true;
+                                                _hide =
+                                                    filteredByCatData![index]
+                                                        .srno;
+                                              }
                                             });
                                           },
                                         ),
@@ -363,45 +408,61 @@ class _ShopCatState extends State<ShopCat> {
 
   IconData? _selectedIcon;
 
-  Widget _RatingShop(BuildContext context) {
-    return Directionality(
-      textDirection: _isRTLMode ? TextDirection.rtl : TextDirection.ltr,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            SizedBox(
-              height: 40.0,
-            ),
-            //_heading('Rate Our Shop'),
-            _ratingBar(_ratingBarMode),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _RatingShop(BuildContext context) {
+  //   return Directionality(
+  //     textDirection: _isRTLMode ? TextDirection.rtl : TextDirection.ltr,
+  //     child: SingleChildScrollView(
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.center,
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: <Widget>[
+  //           SizedBox(
+  //             height: 40.0,
+  //           ),
+  //           //_heading('Rate Our Shop'),
+  //           _ratingBar(0),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget _ratingBar(int mode) {
-    return RatingBar.builder(
-      initialRating: _initialRating,
-      minRating: 1,
-      direction: Axis.horizontal,
-      allowHalfRating: true,
-      unratedColor: Colors.amber.withAlpha(50),
-      itemCount: 5,
-      itemSize: 30.0,
-      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-      itemBuilder: (context, _) => Icon(
+  // Widget _ratingBar(double value) {
+  //   return RatingBar.builder(
+  //     initialRating: value,
+  //     //minRating: 1,
+  //     tapOnlyMode: false,
+  //     maxRating: value,
+  //     direction: Axis.horizontal,
+  //     allowHalfRating: true,
+  //     unratedColor: Colors.amber.withAlpha(50),
+  //     itemCount: 5,
+
+  //     itemSize: 30.0,
+  //     itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+  //     itemBuilder: (context, _) => Icon(
+  //       _selectedIcon ?? Icons.star,
+  //       color: Colors.amber,
+  //     ),
+  //     onRatingUpdate: (ratings) {
+  //       // setState(() {
+  //       //   _rating = ratings;
+  //       // }
+  //       //);
+  //     },
+  //   );
+  // }
+  Widget _ratingBar(double value) {
+    return RatingBarIndicator(
+      //unratedColor: Colors.red,
+      rating: value,
+      itemBuilder: (context, index) => Icon(
         _selectedIcon ?? Icons.star,
         color: Colors.amber,
       ),
-      onRatingUpdate: (rating) {
-        setState(() {
-          _rating = rating;
-        });
-      },
-      updateOnDrag: true,
+      itemCount: 5,
+      itemSize: 40.0,
+      direction: Axis.horizontal,
     );
   }
 }
