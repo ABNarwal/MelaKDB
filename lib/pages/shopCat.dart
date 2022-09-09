@@ -38,7 +38,9 @@ class _ShopCatState extends State<ShopCat> {
   Future<List<UserRegistration>?> fetchData() async {
     try {
       http.Response response = await http.get(Uri.parse(
-          'http://103.87.24.58/kdbmela/UserRegistration/' + widget.Cat));
+          widget.Cat == 'Select All'
+              ? 'http://103.87.24.58/kdbmela/UserRegistration/'
+              : 'http://103.87.24.58/kdbmela/UserRegistration/' + widget.Cat));
       if (response.statusCode == 200) {
         initialData = userRegistrationFromJson(response.body);
 
@@ -80,18 +82,12 @@ class _ShopCatState extends State<ShopCat> {
     });
   }
 
-  launchWhatsApp({
+  void launchWhatsapp({
     required int phone,
     required String message,
   }) async {
     String url() {
-      // if (Platform.isAndroid) {
-      //   // add the [https]
-      return "https://wa.me/$phone/?text=${Uri.parse(message)}"; // new line
-      // } else {
-      //   // add the [https]
-      //   return "https://api.whatsapp.com/send?phone=$phone=${Uri.parse(message)}"; // new line
-      // }
+      return "https://wa.me/$phone::/?text=${Uri.parse(message)}";
     }
 
     if (await canLaunch(url())) {
@@ -100,6 +96,27 @@ class _ShopCatState extends State<ShopCat> {
       throw 'Could not launch ${url()}';
     }
   }
+  // launchWhatsApp({
+  //   required int phone,
+  //   required String message,
+  // }) async {
+  //   String url() {
+  //     // if (Platform.isAndroid) {
+  //     //   // add the [https]
+  //     // return "https://wa.me/$phone/?text=${Uri.parse(message)}";
+  //     return "https://wa.me/$phone/?text=${Uri.parse(message)}";
+  //     // } else {
+  //     //   // add the [https]
+  //     // return "https://api.whatsapp.com/send?phone=$phone=${Uri.parse(message)}"; // new line
+  //     // }
+  //   }
+
+  //   if (await canLaunch(url())) {
+  //     await launch(url());
+  //   } else {
+  //     throw 'Could not launch ${url()}';
+  //   }
+  // }
 
   _launchEmail(String email) async {
     if (await canLaunch("mailto:$email")) {
@@ -233,12 +250,13 @@ class _ShopCatState extends State<ShopCat> {
                                                                 index]
                                                             .mobile),
                                                     onPressed: () {
-                                                      launchWhatsApp(
+                                                      launchWhatsapp(
                                                           phone: int.parse(
-                                                              filteredByCatData![
-                                                                      index]
-                                                                  .mobile),
-                                                          message: 'Hello');
+                                                            filteredByCatData![
+                                                                    index]
+                                                                .mobile,
+                                                          ),
+                                                          message: "Hello");
                                                     },
                                                   )),
                                               ListTile(
@@ -262,28 +280,59 @@ class _ShopCatState extends State<ShopCat> {
                                                       filteredByCatData![index]
                                                           .email),
                                                   onPressed: () {
-                                                    _launchEmail(
-                                                        filteredByCatData![
-                                                                index]
-                                                            .email);
+                                                    launch(
+                                                        'mailto:${filteredByCatData![index].email}?subject=This is Subject Title&body=This is Body of Email');
+                                                    // _launchEmail(
+                                                    //     filteredByCatData![
+                                                    //             index]
+                                                    //         .email);
                                                   },
                                                 ),
                                               ),
                                               ListTile(
-                                                leading: Row(
-                                                  children: [
-                                                    _ratingBar(double.parse(
-                                                        filteredByCatData![
-                                                                index]
-                                                            .gsTNo)),
-                                                    Text(
-                                                      "(${double.parse(filteredByCatData![index].gsTNo)})",
-                                                      style: TextStyle(
-                                                          color: Colors.green,
-                                                          fontSize: 20),
-                                                    )
-                                                  ],
+                                                leading: SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.6,
+                                                  child: Row(
+                                                    children: [
+                                                      _ratingBar(double.parse(
+                                                          filteredByCatData![
+                                                                      index]
+                                                                  .gsTNo
+                                                                  .isEmpty
+                                                              ? '0'
+                                                              : filteredByCatData![
+                                                                      index]
+                                                                  .gsTNo)),
+                                                      Text(
+                                                        "(${double.parse(filteredByCatData![index].gsTNo.isEmpty ? '0' : filteredByCatData![index].gsTNo)})",
+                                                        style: TextStyle(
+                                                            color: Colors.green,
+                                                            fontSize: 20),
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
+                                                //  _ratingBar(double
+                                                //     .parse(filteredByCatData![
+                                                //                 index]
+                                                //             .gsTNo
+                                                //             .isEmpty
+                                                //         ? '0'
+                                                //         : filteredByCatData![
+                                                //                 index]
+                                                //             .gsTNo)),
+                                                //
+                                                //     Text(
+                                                //       "(${double.parse(filteredByCatData![index].gsTNo)})",
+                                                //       style: TextStyle(
+                                                //           color: Colors.green,
+                                                //           fontSize: 20),
+                                                //     )
+                                                //   ],
+                                                // ),
 
                                                 trailing: ElevatedButton(
                                                   child: Text(
